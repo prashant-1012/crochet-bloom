@@ -15,7 +15,7 @@ export default function ContactPage() {
     <>
       <ContactHero />
 
-      <div className="mx-auto max-w-3xl px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
+      <div className="mx-auto max-w-3xl px-4 pb-16 sm:px-6 lg:px-10 lg:pb-24 xl:px-12">
         <div className="mx-auto flex max-w-lg flex-col gap-4 text-sm text-warm-gray sm:flex-row sm:flex-wrap sm:justify-center sm:gap-8">
           <a
             href={`mailto:${CONTACT_EMAIL}`}

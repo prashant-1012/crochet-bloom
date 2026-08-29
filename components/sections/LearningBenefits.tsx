@@ -48,7 +48,7 @@ export function LearningBenefits() {
       id="learning-benefits"
       className="scroll-mt-24 bg-cloud py-20 lg:py-28"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 xl:px-12">
         <SectionHeading
           eyebrow="Learning Benefits"
           title="Why Toddlers (and Parents) Love Our Workbooks"

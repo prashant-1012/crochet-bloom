@@ -6,7 +6,7 @@ import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/constants";
 export function Contact() {
   return (
     <section className="bg-cloud py-20 lg:py-28">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-10 xl:px-12">
         <SectionHeading
           eyebrow="Contact"
           title="Have a Question? Let's Chat"

@@ -47,7 +47,7 @@ export default function AboutPage() {
     <>
       <AboutHero />
 
-      <div className="mx-auto max-w-4xl px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
+      <div className="mx-auto max-w-4xl px-4 pb-16 sm:px-6 lg:px-10 lg:pb-24 xl:px-12">
         <Reveal>
           <div className="mx-auto flex max-w-2xl flex-col gap-4 text-center text-lg text-warm-gray">
             <p>

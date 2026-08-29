@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 // TODO: personalize with the real founder story / brand history if desired
 export function About() {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+    <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-10 lg:py-28 xl:px-12">
       <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <Reveal>
           <div className="relative mx-auto h-[320px] w-[280px] sm:h-[380px] sm:w-[340px]">

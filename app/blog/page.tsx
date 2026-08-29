@@ -16,7 +16,7 @@ export default function BlogPage() {
   );
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+    <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-20 xl:px-12">
       <SectionHeading
         eyebrow="Blog"
         title="Ideas & Stories for Toddler Parents"

@@ -21,14 +21,14 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden">
-      <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-8 lg:py-24 lg:px-8">
+      <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 pb-16 pt-6 sm:px-6 sm:pt-8 lg:grid-cols-2 lg:gap-8 lg:pb-24 lg:pt-10 lg:px-10 xl:px-12">
         <div className="hero-fade-up flex flex-col items-center gap-6 text-center lg:items-start lg:text-left">
           <span className="inline-flex items-center gap-2 rounded-full bg-sage/15 px-4 py-1.5 text-sm font-semibold text-sage-dark">
             <Sparkles size={16} aria-hidden="true" />
             Screen-Free Learning, Made Joyful
           </span>
 
-          <h1 className="font-display text-4xl font-semibold leading-tight text-charcoal sm:text-5xl lg:text-6xl">
+          <h1 className="font-display text-4xl font-semibold leading-tight text-charcoal sm:text-5xl xl:text-6xl">
             Playful Workbooks Toddlers{" "}
             <span className="text-coral">Actually Want</span> to Open
           </h1>
@@ -49,7 +49,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="hero-fade-scale relative mx-auto h-[340px] w-[280px] sm:h-[420px] sm:w-[360px] lg:h-[480px] lg:w-[440px]">
+        <div className="hero-fade-scale relative mx-auto h-[340px] w-[280px] sm:h-[420px] sm:w-[360px] lg:h-[380px] lg:w-[340px] xl:h-[480px] xl:w-[440px]">
           <Blob color="var(--color-coral)" className="left-[-12%] top-[-8%] h-56 w-56 sm:h-64 sm:w-64" />
           <Blob color="var(--color-sky)" className="bottom-[-12%] right-[-12%] h-64 w-64 sm:h-72 sm:w-72" />
 

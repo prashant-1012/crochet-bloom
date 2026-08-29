@@ -41,7 +41,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+    <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-10 lg:py-20 xl:px-12">
       <JsonLd
         data={{
           "@context": "https://schema.org",

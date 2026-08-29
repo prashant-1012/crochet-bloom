@@ -5,7 +5,7 @@ import { Wordmark } from "@/components/ui/Wordmark";
 export function Footer() {
   return (
     <footer className="border-t border-warm-gray-light bg-cloud">
-      <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-12 sm:px-6 lg:flex-row lg:items-start lg:justify-between lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-12 sm:px-6 lg:flex-row lg:items-start lg:justify-between lg:px-10 xl:px-12">
         <div className="max-w-sm">
           <Wordmark size="lg" tagline />
           <p className="mt-3 text-sm text-warm-gray">
@@ -43,7 +43,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-warm-gray-light px-4 py-5 text-center text-xs text-warm-gray sm:px-6 lg:px-8">
+      <div className="border-t border-warm-gray-light px-4 py-5 text-center text-xs text-warm-gray sm:px-6 lg:px-10 xl:px-12">
         © {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
       </div>
     </footer>
