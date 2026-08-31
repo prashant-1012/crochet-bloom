@@ -51,11 +51,20 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: defaultTitle,
     description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: "/images/ogImage.jpg",
+        width: 1993,
+        height: 1052,
+        alt: SITE_NAME,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: defaultTitle,
     description: SITE_DESCRIPTION,
+    images: ["/images/ogImage.jpg"],
   },
 };
 
