@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { NAV_LINKS } from "@/lib/constants";
@@ -11,7 +12,13 @@ interface MobileMenuProps {
   onClose: () => void;
 }
 
+function isNavLinkActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+  const pathname = usePathname();
   useEffect(() => {
     if (!isOpen) return;
 
@@ -55,16 +62,30 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             </button>
           </div>
           <nav className="flex flex-1 flex-col items-start gap-2 px-6 py-4">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={onClose}
-                className="w-full rounded-xl px-3 py-3 font-display text-2xl font-semibold text-charcoal transition-colors hover:bg-warm-gray-light"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive = isNavLinkActive(pathname, link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={onClose}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`relative flex w-full items-center gap-3 rounded-xl px-3 py-3 font-display text-2xl font-semibold transition-colors ${
+                    isActive
+                      ? "bg-coral/10 text-coral-dark"
+                      : "text-charcoal hover:bg-warm-gray-light"
+                  }`}
+                >
+                  <span
+                    className={`h-2 w-2 shrink-0 rounded-full transition-colors ${
+                      isActive ? "bg-coral-dark" : "bg-transparent"
+                    }`}
+                    aria-hidden="true"
+                  />
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
         </motion.div>
       )}
