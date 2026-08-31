@@ -24,26 +24,26 @@ export default function AppleIcon() {
       >
         <div
           style={{
-            position: "absolute",
-            top: 24,
-            fontSize: 60,
-            lineHeight: 1,
-            color: RED,
-          }}
-        >
-          ♥
-        </div>
-        <div
-          style={{
             fontSize: 120,
             fontWeight: 700,
             lineHeight: 1,
             color: RED,
             fontFamily: "sans-serif",
-            marginTop: 28,
           }}
         >
           e
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            top: 26,
+            right: 32,
+            fontSize: 42,
+            lineHeight: 1,
+            color: RED,
+          }}
+        >
+          ♥
         </div>
       </div>
     ),

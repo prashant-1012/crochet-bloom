@@ -2,7 +2,7 @@ export const SITE_NAME = 'Easy Toddler Day'
 export const SITE_DESCRIPTION =
   'Premium, screen-free educational workbooks for toddlers — playful learning parents can trust.'
 // TODO: replace with the real production domain before launch
-export const SITE_URL = 'https://easytoddlerday.com'
+export const SITE_URL = 'https://easytoddlerday.vercel.app'
 
 // Confirmed business WhatsApp number, digits only including country code (required by wa.me links)
 export const WHATSAPP_NUMBER = '917972052896'

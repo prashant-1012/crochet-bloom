@@ -25,26 +25,26 @@ export default function Icon() {
       >
         <div
           style={{
-            position: "absolute",
-            top: 2,
-            fontSize: 22,
-            lineHeight: 1,
-            color: RED,
-          }}
-        >
-          ♥
-        </div>
-        <div
-          style={{
             fontSize: 44,
             fontWeight: 700,
             lineHeight: 1,
             color: RED,
             fontFamily: "sans-serif",
-            marginTop: 10,
           }}
         >
           e
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            top: 8,
+            right: 10,
+            fontSize: 16,
+            lineHeight: 1,
+            color: RED,
+          }}
+        >
+          ♥
         </div>
       </div>
     ),
