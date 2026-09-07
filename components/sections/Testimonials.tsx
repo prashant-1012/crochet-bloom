@@ -3,24 +3,13 @@ import { Quote, Star } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card } from "@/components/ui/Card";
 import { Reveal } from "@/components/ui/Reveal";
-import { testimonials } from "@/lib/data/testimonials";
-
-const avatarColors = [
-  "bg-coral/15 text-coral-dark",
-  "bg-sky/15 text-sky-dark",
-  "bg-sage/15 text-sage-dark",
-];
-
-function getInitials(name: string) {
-  return name
-    .split(" ")
-    .map((part) => part[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-}
+import { Button } from "@/components/ui/Button";
+import { getHomepageTestimonials } from "@/lib/data/testimonials";
+import { avatarColors, getInitials } from "@/lib/utils/avatar";
 
 export function Testimonials() {
+  const testimonials = getHomepageTestimonials();
+
   return (
     <section className="bg-cloud py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 xl:px-12">
@@ -88,6 +77,12 @@ export function Testimonials() {
               </Card>
             </Reveal>
           ))}
+        </div>
+
+        <div className="mt-12 flex justify-center">
+          <Button href="/testimonials" variant="secondary" size="lg">
+            View All Testimonials
+          </Button>
         </div>
       </div>
     </section>

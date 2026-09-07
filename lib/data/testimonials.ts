@@ -45,4 +45,48 @@ export const testimonials: Testimonial[] = [
     rating: 5,
     avatar: '/images/farah.webp',
   },
+  {
+    id: 't5',
+    name: 'Priya Nair',
+    relation: 'Mom of a 2.5-year-old',
+    quote:
+      'We started with the Shapes & Colors workbook and my daughter now asks for "her book" every morning. It\'s become part of our routine, not a chore.',
+    rating: 5,
+  },
+  {
+    id: 't6',
+    name: 'Rahul Deshmukh',
+    relation: 'Dad of a 5-year-old',
+    quote:
+      'His pencil grip has genuinely improved since we started the pre-writing pages. Simple activities, but you can see the difference after a few weeks.',
+    rating: 5,
+  },
+  {
+    id: 't7',
+    name: 'Meera Joshi',
+    relation: 'Playschool owner',
+    quote:
+      'Ordered a bulk set for my classroom over WhatsApp and it was the easiest vendor interaction I\'ve had — quick replies, fair pricing for quantity, no hassle.',
+    rating: 5,
+  },
+  {
+    id: 't8',
+    name: 'Aisha Khan',
+    relation: 'Mom of a 4-year-old',
+    quote:
+      'The paper quality alone sets this apart — thick enough that crayon and marker don\'t bleed through. Feels like a real product, not a printout.',
+    rating: 4,
+  },
+  {
+    id: 't9',
+    name: 'Vikram Nataraj',
+    relation: 'Grandfather, gifting for a 4-year-old',
+    quote:
+      'I\'m not great with online shopping, but adding to cart and finishing over WhatsApp was simple enough for me to manage on my own. My grandson loved it.',
+    rating: 5,
+  },
 ]
+
+export function getHomepageTestimonials(): Testimonial[] {
+  return testimonials.slice(0, 4)
+}
