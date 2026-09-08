@@ -46,22 +46,16 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: defaultTitle,
     description: SITE_DESCRIPTION,
-    // TODO: replace with a dedicated opengraph-image (see 13_SEO_STRATEGY.md,
-    // Step 8 of the roadmap) — reusing the hero photo as a placeholder for now.
-    images: [
-      {
-        url: "/images/hero-desktop.png",
-        width: 1916,
-        height: 821,
-        alt: SITE_NAME,
-      },
-    ],
+    // Image comes from app/opengraph-image.tsx (file convention) — Next
+    // wires it in automatically, no manual `images` array needed here.
   },
   twitter: {
     card: "summary_large_image",
     title: defaultTitle,
     description: SITE_DESCRIPTION,
-    images: ["/images/hero-desktop.png"],
+    // No separate twitter-image file: platforms that read the Twitter Card
+    // fall back to og:image when twitter:image is absent, so the single
+    // opengraph-image.tsx covers both without a duplicate file.
   },
 };
 

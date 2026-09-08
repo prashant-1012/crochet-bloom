@@ -1,4 +1,6 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
 export const size = {
   width: 64,
@@ -6,9 +8,13 @@ export const size = {
 };
 export const contentType = "image/png";
 
-const RED = "#E11D2A";
+export default async function Icon() {
+  const logoData = await readFile(
+    join(process.cwd(), "public/images/logo.png"),
+    "base64"
+  );
+  const logoSrc = `data:image/png;base64,${logoData}`;
 
-export default function Icon() {
   return new ImageResponse(
     (
       <div
@@ -18,34 +24,12 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#ffffff",
+          background: "#FFFBF2",
           borderRadius: "50%",
-          position: "relative",
         }}
       >
-        <div
-          style={{
-            fontSize: 44,
-            fontWeight: 700,
-            lineHeight: 1,
-            color: RED,
-            fontFamily: "sans-serif",
-          }}
-        >
-          e
-        </div>
-        <div
-          style={{
-            position: "absolute",
-            top: 8,
-            right: 10,
-            fontSize: 16,
-            lineHeight: 1,
-            color: RED,
-          }}
-        >
-          ♥
-        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={logoSrc} width={52} height={35} alt="" />
       </div>
     ),
     { ...size }

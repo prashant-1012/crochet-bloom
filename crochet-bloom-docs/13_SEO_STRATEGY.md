@@ -16,6 +16,21 @@
   WhatsApp — the primary discovery/referral channels per
   [02_USER_PERSONAS.md](./02_USER_PERSONAS.md)) render a rich preview
   card.
+- **Built (Step 8)**: `app/opengraph-image.tsx` generates the card via
+  `next/og`'s `ImageResponse` — the real logo (read from
+  `public/images/logo.png` and embedded as a base64 data URI, not a
+  redrawn approximation) plus the "Crochet Bloom" wordmark, the Hero's
+  headline, and a one-line description on the Cream background. No
+  separate `twitter-image.tsx`: Next.js automatically reuses the
+  `opengraph-image` output for both `og:image` and `twitter:image`
+  when no dedicated Twitter file exists, confirmed in the rendered
+  `<head>` output — a duplicate file would've been redundant.
+  `app/icon.tsx` (64×64, circular) and `app/apple-icon.tsx` (180×180,
+  square) use the same real-logo approach at favicon scale. The
+  original `app/favicon.ico` was the unmodified default Next.js
+  scaffold icon (verified via `git log` — untouched since the very
+  first "Initial commit from Create Next App"), not a customized asset
+  worth preserving, so it was deleted rather than left stale.
 
 ## Structured data (JSON-LD)
 
