@@ -8,19 +8,35 @@ import { CartItemRow } from "@/components/cart/CartItemRow";
 import { Button } from "@/components/ui/Button";
 import { formatPrice } from "@/lib/utils/format-price";
 import { buildOrderMessage, openWhatsApp } from "@/lib/utils/whatsapp";
+import { setBackgroundInert } from "@/lib/utils/inert-background";
 
 export function CartDrawer() {
   const { isDrawerOpen, closeDrawer, items, subtotal, updateQuantity, removeItem } =
     useCart();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
+  // Always call the latest closeDrawer without needing it in the effect's
+  // dependency array — keeps the listener-attachment effect keyed on
+  // isDrawerOpen alone, so it can never tear down and rebuild mid-session
+  // for a reason unrelated to the drawer actually opening or closing.
+  const closeDrawerRef = useRef(closeDrawer);
+  useEffect(() => {
+    closeDrawerRef.current = closeDrawer;
+  }, [closeDrawer]);
+
   useEffect(() => {
     if (!isDrawerOpen) return;
 
+    // The cart button is the only realistic trigger, but capturing whatever
+    // actually had focus is more correct than assuming — e.g. a keyboard
+    // user tabbed to it, vs. a click that leaves a different active element.
+    const triggerElement = document.activeElement as HTMLElement | null;
+
     closeButtonRef.current?.focus();
+    setBackgroundInert(true);
 
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") closeDrawer();
+      if (event.key === "Escape") closeDrawerRef.current();
     }
 
     document.addEventListener("keydown", handleKeyDown);
@@ -29,8 +45,10 @@ export function CartDrawer() {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
+      setBackgroundInert(false);
+      triggerElement?.focus();
     };
-  }, [isDrawerOpen, closeDrawer]);
+  }, [isDrawerOpen]);
 
   function handleCheckout() {
     openWhatsApp(buildOrderMessage(items));

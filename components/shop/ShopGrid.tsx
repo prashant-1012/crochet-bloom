@@ -86,7 +86,7 @@ function FilterChip({
       aria-selected={isActive}
       onClick={onClick}
       className={cn(
-        "shrink-0 whitespace-nowrap rounded-full border px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yarn focus-visible:ring-offset-2 focus-visible:ring-offset-cream",
+        "flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-full border px-4 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yarn focus-visible:ring-offset-2 focus-visible:ring-offset-cream",
         isActive
           ? "border-bloom-dark bg-bloom-dark text-white"
           : "border-warm-gray-light bg-cloud text-charcoal hover:border-yarn hover:text-yarn-dark"

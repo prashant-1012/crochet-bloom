@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
@@ -30,17 +30,22 @@ export function Navbar() {
   // navigation commits, so we track intent separately and let the real
   // pathname reclaim authority as soon as it changes.
   const [pendingHref, setPendingHref] = useState<string | null>(null);
-  const activePathname = pendingHref ?? pathname;
-
-  useEffect(() => {
+  // Reset during render when pathname changes, rather than in an effect —
+  // React's own documented pattern for "adjusting state when a prop
+  // changes": it folds into the same commit instead of causing an
+  // extra render-then-effect-then-render cascade.
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setPendingHref(null);
-  }, [pathname]);
+  }
+  const activePathname = pendingHref ?? pathname;
 
   return (
     <>
       <header className="sticky top-0 z-30 border-b border-warm-gray-light/60 bg-cream/85 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-10 xl:px-12">
-          <Link href="/" className="flex items-center gap-2.5">
+          <Link href="/" className="flex min-h-11 items-center gap-2.5">
             <span className="relative h-10 w-14 shrink-0 sm:h-12 sm:w-16">
               <Image
                 src="/images/logo.png"

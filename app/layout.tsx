@@ -88,7 +88,9 @@ export default function RootLayout({
         <JsonLd data={organizationJsonLd} />
         <CartProvider>
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
           <Footer />
           <CartDrawer />
           <WhatsAppFloat />

@@ -2,6 +2,7 @@
 
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -99,6 +100,32 @@ export function CartProvider({ children }: { children: ReactNode }) {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }, [state]);
 
+  // Stable references (dispatch and setState setters never change identity across
+  // renders), so consumers like CartDrawer's Escape-key effect — which depends on
+  // closeDrawer — only re-subscribe when isDrawerOpen actually changes, not on
+  // every cart mutation. Without this, adding/removing/updating quantity while the
+  // drawer is open tears down and rebuilds the Escape listener on every keystroke
+  // of cart activity, opening a race window where a real Escape press can land
+  // mid-rebuild and get silently dropped.
+  const addItem = useCallback(
+    (item: Omit<CartItem, "quantity">, quantity?: number) =>
+      dispatch({ type: "ADD_ITEM", payload: item, quantity }),
+    []
+  );
+  const removeItem = useCallback(
+    (productId: string) => dispatch({ type: "REMOVE_ITEM", payload: { productId } }),
+    []
+  );
+  const updateQuantity = useCallback(
+    (productId: string, quantity: number) =>
+      dispatch({ type: "UPDATE_QUANTITY", payload: { productId, quantity } }),
+    []
+  );
+  const clearCart = useCallback(() => dispatch({ type: "CLEAR_CART" }), []);
+  const openDrawer = useCallback(() => setIsDrawerOpen(true), []);
+  const closeDrawer = useCallback(() => setIsDrawerOpen(false), []);
+  const toggleDrawer = useCallback(() => setIsDrawerOpen((open) => !open), []);
+
   const value = useMemo<CartContextValue>(() => {
     const itemCount = state.items.reduce((sum, item) => sum + item.quantity, 0);
     const subtotal = state.items.reduce(
@@ -110,17 +137,26 @@ export function CartProvider({ children }: { children: ReactNode }) {
       items: state.items,
       itemCount,
       subtotal,
-      addItem: (item, quantity) => dispatch({ type: "ADD_ITEM", payload: item, quantity }),
-      removeItem: (productId) => dispatch({ type: "REMOVE_ITEM", payload: { productId } }),
-      updateQuantity: (productId, quantity) =>
-        dispatch({ type: "UPDATE_QUANTITY", payload: { productId, quantity } }),
-      clearCart: () => dispatch({ type: "CLEAR_CART" }),
+      addItem,
+      removeItem,
+      updateQuantity,
+      clearCart,
       isDrawerOpen,
-      openDrawer: () => setIsDrawerOpen(true),
-      closeDrawer: () => setIsDrawerOpen(false),
-      toggleDrawer: () => setIsDrawerOpen((open) => !open),
+      openDrawer,
+      closeDrawer,
+      toggleDrawer,
     };
-  }, [state, isDrawerOpen]);
+  }, [
+    state,
+    isDrawerOpen,
+    addItem,
+    removeItem,
+    updateQuantity,
+    clearCart,
+    openDrawer,
+    closeDrawer,
+    toggleDrawer,
+  ]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }

@@ -182,3 +182,103 @@ Sunflower Keychain, LED Bouquet Table Decor, Hamper for Her.
   restored from git history, with one deliberate simplification: the
   avatar-image branch was dropped since none of the 20 testimonials
   have a photo — all render via the initials fallback.
+
+## Step 9 — Full QA pass (2026-09-09)
+
+Ran the full [19_TESTING_CHECKLIST.md](./19_TESTING_CHECKLIST.md)
+against real browser interaction rather than code review alone —
+`puppeteer-core` (driver only, no bundled browser download) pointed at
+the system's already-installed Chrome via `executablePath`, installed
+with `npm install --no-save` and fully removed afterward (confirmed
+`package.json`/`package-lock.json` never changed). Tested against a
+real `next build && next start` production server, not just `next
+dev`. This surfaced real, fixable issues that a static code read had
+missed:
+
+- **`CartProvider`'s context value had unstable function
+  identities.** `value`'s `useMemo` depended on `[state, isDrawerOpen]`,
+  so `addItem`/`removeItem`/`closeDrawer`/etc. all got a new reference
+  on *every* cart mutation, not just when the drawer opened or closed.
+  Any consumer effect keyed on one of those functions (e.g. an
+  Escape-key listener depending on `closeDrawer`) would tear down and
+  rebuild on every add/remove/quantity-change while open — wasted
+  work, and a real if narrow risk window. Fixed by wrapping each
+  function in `useCallback` with stable dependencies (`dispatch` and
+  `useState` setters are guaranteed stable, so `[]` is correct).
+- **`CartDrawer` and `MobileMenu` hardened against the same class of
+  bug** using a "latest ref" pattern: `closeDrawer`/`onClose` are
+  stored in a ref updated on every render, so the listener-attachment
+  effect depends on `isOpen` alone and can never re-subscribe for an
+  unrelated reason, regardless of whether the context fix above holds.
+- **A long investigation into an apparent Escape-key bug turned out to
+  be a test-script bug, not an app bug.** A synthetic test sequence
+  (add items → mutate quantity → checkout → Escape, all within ~1.5s)
+  reliably showed the cart drawer "still open" after Escape — but
+  disproven as a real bug by systematic elimination: ruled out stale
+  hydration (3s settle time didn't change it), duplicate dialog
+  elements (confirmed exactly one throughout), dev-vs-production
+  (identical in both), and confirmed via direct event tracing that the
+  Escape keydown *did* fire the app's own listener correctly (proven
+  by watching the listener's cleanup actually run). The real
+  explanation: the cart drawer's exit is a Framer Motion spring
+  transition, not an instant unmount — `AnimatePresence` keeps the
+  dialog in the DOM until the spring settles (observed up to ~650ms
+  under load), and the test's fixed 400ms wait sometimes sampled
+  mid-animation. Not a UX problem (650ms is a normal panel-close
+  duration) — just a test that needed to poll for the node's actual
+  removal instead of checking once. The two defensive fixes above are
+  still kept — genuinely better practice, just not the cause of this
+  particular finding.
+- **Neither overlay actually implemented the focus trap this project's
+  own [12_ACCESSIBILITY.md](./12_ACCESSIBILITY.md) requires** —
+  pre-existing in both (MobileMenu never moved focus in at all;
+  neither trapped Tab within itself or returned focus to the trigger
+  on close). Fixed properly, matching the doc's own prescribed
+  approach: a new `lib/utils/inert-background.ts` toggles the native
+  `inert` attribute on `header`, `#main-content` (id added to `<main>`
+  in `app/layout.tsx`), `footer`, and the floating WhatsApp button
+  (`#whatsapp-float`, previously not covered by any trap since it's a
+  layout sibling, not inside those landmarks) while either overlay is
+  open — verified with real repeated `Tab` key presses that focus
+  never reaches that content. Both overlays now also capture
+  `document.activeElement` before stealing focus and restore it in
+  the effect cleanup, so focus genuinely returns to whichever element
+  triggered the overlay (previously: nothing did this; focus fell
+  through to whatever the browser defaults to, observed landing on
+  the *next* focusable element in DOM order — in one case, the
+  WhatsApp float button).
+- **Two real 44px touch-target violations**, caught by measuring
+  actual rendered `getBoundingClientRect()` sizes on mobile rather
+  than assuming Tailwind classes matched the intended size: the navbar
+  logo `<Link>` (40px tall) and all `/shop` category filter chips
+  (38px tall, `ShopGrid.tsx`'s `FilterChip`). Both now use `min-h-11`
+  the same way `Button` already did — this was a case of the newer
+  code (Step 3's filter chips) not reusing the sizing convention
+  already established elsewhere.
+- **Fixed a pre-existing, unrelated lint error** in `Navbar.tsx`
+  (`react-hooks/set-state-in-effect`, present since the reference
+  project's original scaffolding, flagged but deliberately left alone
+  in Steps 1 and 2 as out of scope) — encountered a third time while
+  editing this file for the touch-target fix, so fixed it this time
+  using React's own documented pattern for this exact case (reset
+  state during render when a prop changes, not in a `useEffect`).
+  Verified the nav's optimistic active-link-highlight behavior still
+  works identically via direct interaction (immediate highlight on
+  click, correct handoff once the route commits).
+- **Operational note**: cleaning up headless Chrome processes after
+  each test round needed care — `browser.close()` doesn't always fully
+  terminate every child process on Windows, and zombie accumulation
+  (17 at one point) was the actual cause of a batch of unrelated
+  navigation timeouts, not an app issue. One cleanup pass used a
+  broad `taskkill /IM chrome.exe /F`, which would have also closed any
+  real Chrome windows the project owner had open — flagged to them
+  directly; later cleanups instead verified each process's command
+  line (`--headless=new`, `--enable-automation`,
+  `puppeteer_dev_chrome_profile-*` user-data-dir) before killing by
+  specific PID.
+
+Not covered in this pass, left for before-launch follow-up: Lighthouse
+audit, Safari/Firefox (neither available in this environment), and a
+literal re-check of the empty-cart state after emptying a previously
+populated cart (low risk, same code path as the already-verified
+fresh-session empty state, but not literally re-exercised).

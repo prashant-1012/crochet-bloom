@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { NAV_LINKS } from "@/lib/constants";
+import { setBackgroundInert } from "@/lib/utils/inert-background";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -19,11 +20,27 @@ function isNavLinkActive(pathname: string, href: string) {
 
 export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const pathname = usePathname();
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Same "latest callback via ref" pattern as CartDrawer — keeps this effect
+  // keyed on isOpen alone so it only (re)attaches when the menu actually
+  // opens or closes, not on every parent re-render that hands down a new
+  // onClose closure.
+  const onCloseRef = useRef(onClose);
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
   useEffect(() => {
     if (!isOpen) return;
 
+    const triggerElement = document.activeElement as HTMLElement | null;
+
+    closeButtonRef.current?.focus();
+    setBackgroundInert(true);
+
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") onCloseRef.current();
     }
 
     document.addEventListener("keydown", handleKeyDown);
@@ -32,8 +49,10 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
+      setBackgroundInert(false);
+      triggerElement?.focus();
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   return (
     <AnimatePresence>
@@ -53,6 +72,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               Menu
             </span>
             <button
+              ref={closeButtonRef}
               type="button"
               onClick={onClose}
               aria-label="Close menu"
