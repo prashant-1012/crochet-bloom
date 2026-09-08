@@ -18,3 +18,10 @@ export const NAV_LINKS = [
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ] as const
+
+export const CATEGORY_LABELS = {
+  bouquets: 'Bouquets',
+  keychains: 'Keychains',
+  hampers: 'Hampers',
+  decor: 'Decor',
+} as const

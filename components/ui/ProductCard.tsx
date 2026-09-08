@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/Card";
 import { QuantityStepper } from "@/components/ui/QuantityStepper";
 import { useCart } from "@/components/cart/CartProvider";
 import { formatPrice } from "@/lib/utils/format-price";
+import { CATEGORY_LABELS } from "@/lib/constants";
 import type { Product } from "@/lib/types/product";
 
 interface ProductCardProps {
@@ -52,8 +53,8 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           className="object-cover"
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
         />
-        <Badge variant="sky" className="absolute left-3 top-3">
-          {product.ageRange}
+        <Badge variant="yarn" className="absolute left-3 top-3">
+          {CATEGORY_LABELS[product.category]}
         </Badge>
       </div>
       <div className="flex flex-1 flex-col gap-2 p-5">
@@ -63,6 +64,9 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
         <p className="flex-1 text-sm text-warm-gray">
           {product.shortDescription}
         </p>
+        {product.madeToOrder && (
+          <p className="text-xs text-warm-gray">Handcrafted to order</p>
+        )}
         <div className="mt-2 flex items-center justify-between gap-3">
           <div className="flex items-baseline gap-2">
             <span className="text-lg font-bold text-charcoal">

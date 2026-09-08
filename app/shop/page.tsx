@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ProductCard } from "@/components/ui/ProductCard";
-import { Reveal } from "@/components/ui/Reveal";
+import { ShopGrid } from "@/components/shop/ShopGrid";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { SITE_URL } from "@/lib/constants";
 import { products } from "@/lib/data/products";
 
 export const metadata: Metadata = {
-  title: "Shop Workbooks",
+  title: "Shop",
   description:
-    "Browse our full collection of screen-free, Montessori-inspired toddler workbooks.",
+    "Browse handmade crochet flower bouquets, keychains, gift hampers, and decor — every piece hand-stitched to order.",
 };
 
 export default function ShopPage() {
@@ -38,16 +37,13 @@ export default function ShopPage() {
 
       <SectionHeading
         eyebrow="Shop"
-        title="All Workbooks"
-        subtitle="Every workbook is designed for little hands, short attention spans, and big learning moments."
+        title="The Full Collection"
+        subtitle="Every piece is crocheted by hand — browse by category, or see everything at once."
         align="left"
       />
-      <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((product, index) => (
-          <Reveal key={product.id} delay={(index % 3) * 0.06} className="h-full">
-            <ProductCard product={product} priority={index < 3} />
-          </Reveal>
-        ))}
+
+      <div className="mt-12">
+        <ShopGrid products={products} />
       </div>
     </div>
   );
