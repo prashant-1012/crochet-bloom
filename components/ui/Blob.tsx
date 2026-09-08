@@ -5,7 +5,7 @@ interface BlobProps {
   color?: string;
 }
 
-export function Blob({ className, color = "var(--color-marigold)" }: BlobProps) {
+export function Blob({ className, color = "var(--color-bloom)" }: BlobProps) {
   return (
     <svg
       viewBox="0 0 200 200"

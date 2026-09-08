@@ -11,7 +11,7 @@ export function buildOrderMessage(items: CartItem[]): string {
   const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
   return [
-    "Hi Easy Toddler Day! I'd like to order:",
+    "Hi Crochet Bloom! I'd like to order:",
     '',
     ...lines,
     '',
@@ -23,11 +23,11 @@ export function buildOrderMessage(items: CartItem[]): string {
 }
 
 export function buildInquiryMessage(): string {
-  return 'Hi! I have a question about Easy Toddler Day workbooks.'
+  return "Hi! I have a question about Crochet Bloom — I'd also love to ask about a custom bouquet."
 }
 
 export function buildContactMessage(data: { name: string; email: string; message: string }): string {
-  return `Hi Easy Toddler Day! My name is ${data.name} (${data.email}).\n\n${data.message}`
+  return `Hi Crochet Bloom! My name is ${data.name} (${data.email}).\n\n${data.message}`
 }
 
 export function buildWhatsAppUrl(message: string): string {

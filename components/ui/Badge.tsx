@@ -1,21 +1,20 @@
 import type { HTMLAttributes } from "react";
 import { cn } from "@/lib/utils/cn";
 
-type BadgeVariant = "marigold" | "sky" | "coral" | "sage";
+type BadgeVariant = "bloom" | "yarn" | "neutral";
 
 interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   variant?: BadgeVariant;
 }
 
 const variants: Record<BadgeVariant, string> = {
-  marigold: "bg-marigold/15 text-marigold-dark",
-  sky: "bg-sky/15 text-sky-dark",
-  coral: "bg-coral/15 text-coral",
-  sage: "bg-sage/15 text-sage",
+  bloom: "bg-bloom/15 text-bloom-dark",
+  yarn: "bg-yarn/15 text-yarn-dark",
+  neutral: "bg-warm-gray-light text-charcoal",
 };
 
 export function Badge({
-  variant = "marigold",
+  variant = "bloom",
   className,
   ...props
 }: BadgeProps) {

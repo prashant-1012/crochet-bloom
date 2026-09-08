@@ -56,7 +56,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               type="button"
               onClick={onClose}
               aria-label="Close menu"
-              className="flex h-11 w-11 items-center justify-center rounded-full text-charcoal transition-colors hover:bg-warm-gray-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky"
+              className="flex h-11 w-11 items-center justify-center rounded-full text-charcoal transition-colors hover:bg-warm-gray-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yarn"
             >
               <X size={22} />
             </button>
@@ -72,13 +72,13 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   aria-current={isActive ? "page" : undefined}
                   className={`relative flex w-full items-center gap-3 rounded-xl px-3 py-3 font-display text-2xl font-semibold transition-colors ${
                     isActive
-                      ? "bg-coral/10 text-coral-dark"
+                      ? "bg-bloom/10 text-bloom-dark"
                       : "text-charcoal hover:bg-warm-gray-light"
                   }`}
                 >
                   <span
                     className={`h-2 w-2 shrink-0 rounded-full transition-colors ${
-                      isActive ? "bg-coral-dark" : "bg-transparent"
+                      isActive ? "bg-bloom-dark" : "bg-transparent"
                     }`}
                     aria-hidden="true"
                   />

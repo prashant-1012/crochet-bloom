@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { Menu } from "lucide-react";
 import { NAV_LINKS, SITE_NAME } from "@/lib/constants";
 import { CartButton } from "@/components/cart/CartButton";
+import { Wordmark } from "@/components/ui/Wordmark";
 
 function isNavLinkActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
@@ -39,16 +40,19 @@ export function Navbar() {
     <>
       <header className="sticky top-0 z-30 border-b border-warm-gray-light/60 bg-cream/85 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-10 xl:px-12">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="relative h-11 w-[180px] sm:h-14 sm:w-[220px]">
+          <Link href="/" className="flex items-center gap-2.5">
+            <span className="relative h-10 w-14 shrink-0 sm:h-12 sm:w-16">
               <Image
-                src="/images/easytoddlerday-logo-cropped.png"
+                src="/images/logo.png"
                 alt={SITE_NAME}
                 fill
                 priority
-                sizes="220px"
-                className="object-contain object-left"
+                sizes="64px"
+                className="object-contain"
               />
+            </span>
+            <span aria-hidden="true" className="hidden sm:inline-flex">
+              <Wordmark size="sm" />
             </span>
           </Link>
 
@@ -63,14 +67,14 @@ export function Navbar() {
                   aria-current={isActive ? "page" : undefined}
                   className={`relative px-4 py-2 text-base font-medium transition-colors ${
                     isActive
-                      ? "font-semibold text-coral-dark"
-                      : "text-charcoal hover:text-sky-dark"
+                      ? "font-semibold text-bloom-dark"
+                      : "text-charcoal hover:text-yarn-dark"
                   }`}
                 >
                   {isActive && (
                     <motion.span
                       layoutId="navbar-active-pill"
-                      className="absolute inset-0 rounded-full bg-coral/10"
+                      className="absolute inset-0 rounded-full bg-bloom/10"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -78,7 +82,7 @@ export function Navbar() {
                   {isActive && (
                     <motion.span
                       layoutId="navbar-active-dot"
-                      className="absolute -bottom-1 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-coral-dark"
+                      className="absolute -bottom-1 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-bloom-dark"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -93,7 +97,7 @@ export function Navbar() {
               type="button"
               onClick={() => setIsMobileMenuOpen(true)}
               aria-label="Open menu"
-              className="flex h-11 w-11 items-center justify-center rounded-full text-charcoal transition-colors hover:bg-warm-gray-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky lg:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-full text-charcoal transition-colors hover:bg-warm-gray-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yarn lg:hidden"
             >
               <Menu size={22} />
             </button>

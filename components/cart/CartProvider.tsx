@@ -12,7 +12,7 @@ import {
 } from "react";
 import type { CartAction, CartItem, CartState } from "@/lib/types/cart";
 
-const STORAGE_KEY = "etd_cart_v1";
+const STORAGE_KEY = "cb_cart_v1";
 
 const initialState: CartState = { items: [] };
 

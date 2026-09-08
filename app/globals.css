@@ -4,14 +4,10 @@
   --background: var(--cream);
   --foreground: var(--charcoal);
 
-  --marigold: #ffb627;
-  --marigold-dark: #f2a100;
-  --sky: #2f9cd8;
-  --sky-dark: #1979aa;
-  --coral: #f0475f;
-  --coral-dark: #d62f49;
-  --sage: #2fa854;
-  --sage-dark: #0f752b;
+  --bloom: #f84e8b;
+  --bloom-dark: #d70f51;
+  --yarn: #1d8ae5;
+  --yarn-dark: #0262cc;
   --cream: #fffbf2;
   --cloud: #ffffff;
   --charcoal: #2b2a28;
@@ -26,14 +22,10 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --color-marigold: var(--marigold);
-  --color-marigold-dark: var(--marigold-dark);
-  --color-sky: var(--sky);
-  --color-sky-dark: var(--sky-dark);
-  --color-coral: var(--coral);
-  --color-coral-dark: var(--coral-dark);
-  --color-sage: var(--sage);
-  --color-sage-dark: var(--sage-dark);
+  --color-bloom: var(--bloom);
+  --color-bloom-dark: var(--bloom-dark);
+  --color-yarn: var(--yarn);
+  --color-yarn-dark: var(--yarn-dark);
   --color-cream: var(--cream);
   --color-cloud: var(--cloud);
   --color-charcoal: var(--charcoal);
@@ -44,8 +36,7 @@
   --shadow-lift: var(--shadow-lift);
 
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-fredoka);
+  --font-display: var(--font-fraunces);
 }
 
 body {

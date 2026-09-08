@@ -12,77 +12,73 @@ export const testimonials: Testimonial[] = [
   {
     id: 't1',
     name: 'Ananya Rao',
-    relation: 'Mom of a 3-year-old',
+    relation: "Bought a birthday bouquet for her sister",
     quote:
-      "The tracing workbook has become our favorite quiet-time activity. It's screen-free, my daughter loves it, and I can actually see her pencil grip improving.",
+      "I sent a photo before ordering just to check the colors, and the actual bouquet looked even better in person. My sister still has it on her desk months later — it just doesn't fade.",
     rating: 5,
-    avatar: '/images/ananya.webp',
   },
   {
     id: 't2',
     name: 'Kabir Malhotra',
-    relation: 'Dad of a 4-year-old',
+    relation: 'Bought the Hamper for Her for their anniversary',
     quote:
-      'Finally a workbook that doesn\'t feel like a school worksheet. The pages are colorful without being overwhelming, and my son asks for it by name.',
+      "Ordering over WhatsApp felt more personal than any checkout page — I could actually ask questions about the hamper contents before committing. My wife loved that it wasn't just flowers.",
     rating: 5,
-    avatar: '/images/kabir.webp',
   },
   {
     id: 't3',
     name: 'Sneha Iyer',
-    relation: 'Mom of twin 2-year-olds',
+    relation: 'Ordered keychains as party favors',
     quote:
-      'Ordering was so easy — added everything to cart and sorted the rest over WhatsApp in minutes. The quality of the print and paper is genuinely premium.',
+      "Added a handful of keychains to the cart and sorted quantities over WhatsApp in minutes. Every single one was stitched perfectly — my guests kept asking where I got them.",
     rating: 5,
-    avatar: '/images/sneha.webp',
   },
   {
     id: 't4',
     name: 'Farah Sheikh',
-    relation: 'Grandmother, gifting for a 3-year-old',
+    relation: "Gifted a rose bouquet for a friend's engagement",
     quote:
-      'I wanted a thoughtful gift that wasn\'t another toy. These workbooks were the perfect middle ground — educational, but still fun for a toddler.',
+      "I wanted something that wasn't just another bouquet that wilts in a week. The single rose was gorgeous, and it's now sitting on her shelf as a keepsake, not in the bin.",
     rating: 5,
-    avatar: '/images/farah.webp',
   },
   {
     id: 't5',
     name: 'Priya Nair',
-    relation: 'Mom of a 2.5-year-old',
+    relation: "Bought the Ensemble Mixed Bouquet for her mother's birthday",
     quote:
-      'We started with the Shapes & Colors workbook and my daughter now asks for "her book" every morning. It\'s become part of our routine, not a chore.',
+      "The mixed bouquet was the showstopper I hoped for — every flower type stitched with so much care. My mother actually teared up opening it, which says everything.",
     rating: 5,
   },
   {
     id: 't6',
     name: 'Rahul Deshmukh',
-    relation: 'Dad of a 5-year-old',
+    relation: 'Ordered the LED bouquet for a dinner centerpiece',
     quote:
-      'His pencil grip has genuinely improved since we started the pre-writing pages. Simple activities, but you can see the difference after a few weeks.',
+      "Used the LED bouquet as our table centerpiece for an engagement dinner and it photographed beautifully. Genuinely didn't expect handmade crochet to look this polished.",
     rating: 5,
   },
   {
     id: 't7',
     name: 'Meera Joshi',
-    relation: 'Playschool owner',
+    relation: 'Small business owner, ordered in bulk for client gifting',
     quote:
-      'Ordered a bulk set for my classroom over WhatsApp and it was the easiest vendor interaction I\'ve had — quick replies, fair pricing for quantity, no hassle.',
+      "Ordered a batch of keychains for client gifting and the WhatsApp back-and-forth on quantity and pricing was the easiest vendor interaction I've had all year.",
     rating: 5,
   },
   {
     id: 't8',
     name: 'Aisha Khan',
-    relation: 'Mom of a 4-year-old',
+    relation: 'First-time buyer, treated herself to a daisy bouquet',
     quote:
-      'The paper quality alone sets this apart — thick enough that crayon and marker don\'t bleed through. Feels like a real product, not a printout.',
+      "Bought this for myself, no occasion needed, and I don't regret it at all. The stitching detail up close is honestly impressive — you can tell it's made by hand, not a machine.",
     rating: 4,
   },
   {
     id: 't9',
     name: 'Vikram Nataraj',
-    relation: 'Grandfather, gifting for a 4-year-old',
+    relation: 'Grandfather, gifted a bouquet to his granddaughter',
     quote:
-      'I\'m not great with online shopping, but adding to cart and finishing over WhatsApp was simple enough for me to manage on my own. My grandson loved it.',
+      "I'm not one for online shopping, but adding to cart and finishing the order over WhatsApp was simple enough for me to manage on my own. My granddaughter was thrilled.",
     rating: 5,
   },
 ]

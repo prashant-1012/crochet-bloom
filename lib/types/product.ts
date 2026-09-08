@@ -1,4 +1,4 @@
-export type ProductCategory = 'phonics' | 'motor-skills' | 'numbers' | 'general'
+export type ProductCategory = 'bouquets' | 'keychains' | 'hampers' | 'decor'
 
 export interface Product {
   id: string
@@ -9,9 +9,10 @@ export interface Product {
   price: number
   compareAtPrice?: number
   image: string
-  ageRange: string
   category: ProductCategory
   tags: string[]
   inStock: boolean
   featured: boolean
+  // true for most items — surfaces a "Handcrafted to order" badge instead of implying instant dispatch
+  madeToOrder: boolean
 }

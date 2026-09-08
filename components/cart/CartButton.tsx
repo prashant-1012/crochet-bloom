@@ -12,7 +12,7 @@ export function CartButton() {
       type="button"
       onClick={toggleDrawer}
       aria-label={`Open cart, ${itemCount} item${itemCount === 1 ? "" : "s"}`}
-      className="relative flex h-11 w-11 items-center justify-center rounded-full text-charcoal transition-colors hover:bg-warm-gray-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky"
+      className="relative flex h-11 w-11 items-center justify-center rounded-full text-charcoal transition-colors hover:bg-warm-gray-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yarn"
     >
       <ShoppingBag size={22} />
       {itemCount > 0 && (
@@ -21,7 +21,7 @@ export function CartButton() {
           initial={{ scale: 0.6 }}
           animate={{ scale: [1.3, 1] }}
           transition={{ duration: 0.25, ease: "easeOut" }}
-          className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-coral px-1 text-xs font-bold text-white"
+          className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-bloom-dark px-1 text-xs font-bold text-white"
         >
           {itemCount}
         </motion.span>

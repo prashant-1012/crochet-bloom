@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { CONTACT_EMAIL, CONTACT_PHONE, NAV_LINKS, SITE_NAME } from "@/lib/constants";
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  NAV_LINKS,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+} from "@/lib/constants";
 import { Wordmark } from "@/components/ui/Wordmark";
 
 export function Footer() {
@@ -8,10 +14,7 @@ export function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-12 sm:px-6 lg:flex-row lg:items-start lg:justify-between lg:px-10 xl:px-12">
         <div className="max-w-sm">
           <Wordmark size="lg" tagline />
-          <p className="mt-3 text-sm text-warm-gray">
-            Premium, screen-free educational workbooks for toddlers — playful
-            learning parents can trust.
-          </p>
+          <p className="mt-3 text-sm text-warm-gray">{SITE_DESCRIPTION}</p>
         </div>
 
         <nav className="flex flex-col">
@@ -22,7 +25,7 @@ export function Footer() {
             <Link
               key={link.href}
               href={link.href}
-              className="flex items-center py-3 text-sm text-charcoal transition-colors hover:text-sky-dark"
+              className="flex items-center py-3 text-sm text-charcoal transition-colors hover:text-yarn-dark"
             >
               {link.label}
             </Link>
@@ -35,7 +38,7 @@ export function Footer() {
           </span>
           <a
             href={`mailto:${CONTACT_EMAIL}`}
-            className="flex items-center py-3 text-sm text-charcoal transition-colors hover:text-sky-dark"
+            className="flex items-center py-3 text-sm text-charcoal transition-colors hover:text-yarn-dark"
           >
             {CONTACT_EMAIL}
           </a>

@@ -1,7 +1,6 @@
 export const avatarColors = [
-  "bg-coral/15 text-coral-dark",
-  "bg-sky/15 text-sky-dark",
-  "bg-sage/15 text-sage-dark",
+  "bg-bloom/15 text-bloom-dark",
+  "bg-yarn/15 text-yarn-dark",
 ];
 
 export function getInitials(name: string) {

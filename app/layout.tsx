@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import { Geist, Geist_Mono, Fredoka } from "next/font/google";
+import { Geist, Fraunces } from "next/font/google";
 import "./globals.css";
 import {
   CONTACT_EMAIL,
@@ -26,18 +26,13 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const fredoka = Fredoka({
-  variable: "--font-fredoka",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
   weight: ["500", "600", "700"],
 });
 
-const defaultTitle = `${SITE_NAME} | Premium Toddler Learning Workbooks`;
+const defaultTitle = `${SITE_NAME} | Handmade Crochet Flowers & Gifts`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -51,11 +46,13 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: defaultTitle,
     description: SITE_DESCRIPTION,
+    // TODO: replace with a dedicated opengraph-image (see 13_SEO_STRATEGY.md,
+    // Step 8 of the roadmap) — reusing the hero photo as a placeholder for now.
     images: [
       {
-        url: "/images/ogImage.jpg",
-        width: 1993,
-        height: 1052,
+        url: "/images/hero-desktop.png",
+        width: 1916,
+        height: 821,
         alt: SITE_NAME,
       },
     ],
@@ -64,7 +61,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: defaultTitle,
     description: SITE_DESCRIPTION,
-    images: ["/images/ogImage.jpg"],
+    images: ["/images/hero-desktop.png"],
   },
 };
 
@@ -73,7 +70,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: SITE_NAME,
   url: SITE_URL,
-  logo: `${SITE_URL}/images/easytoddlerday-logo-cropped.png`,
+  logo: `${SITE_URL}/images/logo.png`,
   description: SITE_DESCRIPTION,
   contactPoint: {
     "@type": "ContactPoint",
@@ -91,7 +88,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${fredoka.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-cream text-charcoal">
         <JsonLd data={organizationJsonLd} />

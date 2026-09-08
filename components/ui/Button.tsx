@@ -25,13 +25,13 @@ type ButtonAsLink = BaseProps & {
 type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const base =
-  "inline-flex min-h-11 items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-150 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-2 focus-visible:ring-offset-cream disabled:opacity-50 disabled:pointer-events-none";
+  "inline-flex min-h-11 items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-150 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yarn focus-visible:ring-offset-2 focus-visible:ring-offset-cream disabled:opacity-50 disabled:pointer-events-none";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-coral-dark text-white hover:brightness-95 shadow-soft hover:shadow-lift",
+    "bg-bloom-dark text-white hover:brightness-95 shadow-soft hover:shadow-lift",
   secondary:
-    "bg-transparent text-sky-dark border-2 border-sky hover:bg-sky hover:text-white",
+    "bg-transparent text-yarn-dark border-2 border-yarn hover:bg-yarn hover:text-white",
   ghost: "bg-transparent text-charcoal hover:bg-warm-gray-light",
 };
 
