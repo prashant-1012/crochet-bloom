@@ -7,7 +7,7 @@ import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Get in touch with Easy Toddler Day — questions, bulk orders, or just to say hi.",
+    "Get in touch with Crochet Bloom — custom bouquet requests, bulk gifting orders, or just to say hi.",
 };
 
 export default function ContactPage() {
@@ -19,7 +19,7 @@ export default function ContactPage() {
         <div className="mx-auto flex max-w-lg flex-col gap-4 text-sm text-warm-gray sm:flex-row sm:flex-wrap sm:justify-center sm:gap-8">
           <a
             href={`mailto:${CONTACT_EMAIL}`}
-            className="inline-flex items-center gap-2 py-3 transition-colors hover:text-sky-dark"
+            className="inline-flex items-center gap-2 py-3 transition-colors hover:text-yarn-dark"
           >
             <Mail size={16} aria-hidden="true" /> {CONTACT_EMAIL}
           </a>

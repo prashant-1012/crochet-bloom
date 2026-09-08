@@ -16,7 +16,7 @@ export function Contact() {
         <div className="mt-10 flex flex-col gap-4 text-sm text-warm-gray sm:flex-row sm:items-center sm:justify-center sm:gap-10">
           <a
             href={`mailto:${CONTACT_EMAIL}`}
-            className="inline-flex items-center gap-2 py-3 transition-colors hover:text-sky-dark"
+            className="inline-flex items-center gap-2 py-3 transition-colors hover:text-yarn-dark"
           >
             <Mail size={16} aria-hidden="true" /> {CONTACT_EMAIL}
           </a>
