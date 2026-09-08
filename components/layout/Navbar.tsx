@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Menu } from "lucide-react";
+import { Flower, Menu } from "lucide-react";
 import { NAV_LINKS, SITE_NAME } from "@/lib/constants";
 import { CartButton } from "@/components/cart/CartButton";
 import { Wordmark } from "@/components/ui/Wordmark";
@@ -82,9 +82,15 @@ export function Navbar() {
                   {isActive && (
                     <motion.span
                       layoutId="navbar-active-dot"
-                      className="absolute -bottom-1 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-bloom-dark"
+                      className="absolute -bottom-1.5 left-1/2 -translate-x-1/2"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
+                    >
+                      <Flower
+                        size={12}
+                        className="text-bloom-dark"
+                        aria-hidden="true"
+                      />
+                    </motion.span>
                   )}
                 </Link>
               );
