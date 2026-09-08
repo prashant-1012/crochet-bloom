@@ -67,7 +67,7 @@ export function CartDrawer() {
                 type="button"
                 onClick={closeDrawer}
                 aria-label="Close cart"
-                className="flex h-11 w-11 items-center justify-center rounded-full text-charcoal transition-colors hover:bg-warm-gray-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky"
+                className="flex h-11 w-11 items-center justify-center rounded-full text-charcoal transition-colors hover:bg-warm-gray-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yarn"
               >
                 <X size={20} />
               </button>
@@ -77,7 +77,7 @@ export function CartDrawer() {
               <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6 text-center">
                 <p className="text-warm-gray">Your cart is empty.</p>
                 <Button href="/shop" onClick={closeDrawer}>
-                  Browse Workbooks
+                  Browse the Shop
                 </Button>
               </div>
             ) : (

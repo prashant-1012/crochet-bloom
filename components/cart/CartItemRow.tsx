@@ -37,7 +37,7 @@ export function CartItemRow({
             type="button"
             onClick={onRemove}
             aria-label={`Remove ${item.name} from cart`}
-            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-warm-gray transition-colors hover:bg-warm-gray-light hover:text-coral-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-warm-gray transition-colors hover:bg-warm-gray-light hover:text-bloom-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yarn"
           >
             <Trash2 size={16} />
           </button>
