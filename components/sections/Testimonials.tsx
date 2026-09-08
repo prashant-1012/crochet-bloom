@@ -15,15 +15,15 @@ export function Testimonials() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 xl:px-12">
         <SectionHeading
           eyebrow="Testimonials"
-          title="Loved by Parents, Adored by Toddlers"
-          subtitle="Real words from families who made screen-free learning part of their toddler's day."
+          title="Loved, One Stitch at a Time"
+          subtitle="Real words from customers who chose handmade over mass-produced, and never looked back."
         />
 
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {testimonials.map((testimonial, index) => (
             <Reveal key={testimonial.id} delay={(index % 4) * 0.06} className="h-full">
               <Card className="flex h-full flex-col gap-4 p-6">
-                <Quote className="h-6 w-6 text-coral/40" aria-hidden="true" />
+                <Quote className="h-6 w-6 text-bloom/40" aria-hidden="true" />
 
                 <div
                   className="flex gap-0.5"
@@ -36,7 +36,7 @@ export function Testimonials() {
                       size={16}
                       className={
                         i < testimonial.rating
-                          ? "fill-coral text-coral"
+                          ? "fill-bloom text-bloom"
                           : "text-warm-gray-light"
                       }
                     />

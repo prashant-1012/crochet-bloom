@@ -1,10 +1,11 @@
 # 04 — Site Map (route → file mapping)
 
 Next.js 16 App Router, file-system based routing under `app/`. This is
-the same physical `app/` directory as the reference project — routes
-not listed here (`/blog`, `/testimonials`) are removed as part of the
-cleanup in the final build phase, see
-[20_CLAUDE_NOTES.md](./20_CLAUDE_NOTES.md).
+the same physical `app/` directory as the reference project — `/blog`
+is removed as part of the cleanup in the final build phase (see
+[20_CLAUDE_NOTES.md](./20_CLAUDE_NOTES.md)); `/testimonials` is kept
+— see [03_INFORMATION_ARCHITECTURE.md](./03_INFORMATION_ARCHITECTURE.md)
+for why that one was added back after initially being cut.
 
 ```
 app/
@@ -15,6 +16,8 @@ app/
 ├── robots.ts                → /robots.txt (generated)
 ├── shop/
 │   └── page.tsx             → "/shop"        Full catalog
+├── testimonials/
+│   └── page.tsx             → "/testimonials" Full testimonials page
 ├── about/
 │   └── page.tsx             → "/about"
 └── contact/
@@ -42,5 +45,3 @@ app/
   past what a card grid can communicate, or per-product info (care
   instructions, customization options) needs more room than a card.
 - `/blog` — out of scope per the owner's site-scope decision.
-- A dedicated `/testimonials` route — Testimonials stays a homepage
-  section only for now.

@@ -84,7 +84,7 @@ Contact (condensed), Footer — see
 | Checkout model | Cart + WhatsApp checkout (same pattern as the reference project), not a per-product "enquire only" flow |
 | Product photos with visible competitor watermarks | Use as-is for this build phase; revisit before public launch |
 | Hero image mismatch (teddy bear vs. flower catalog) | Use the teddy bear photo anyway, as a generic handmade/cozy mood shot |
-| Site scope | Home, Shop, About, Contact + a Testimonials section (no blog, no dedicated Testimonials route) |
+| Site scope | Home, Shop, Testimonials (section + dedicated page), About, Contact (no blog) — Testimonials was initially scoped as a homepage-only section, then revised 2026-09-09 to add the dedicated `/testimonials` route back, see [03_INFORMATION_ARCHITECTURE.md](./03_INFORMATION_ARCHITECTURE.md) |
 | Brand colors | Sampled from the logo — see [07_COLOR_SYSTEM.md](./07_COLOR_SYSTEM.md) |
 | Display font | Proposed: Fraunces (replacing the reference project's Fredoka) — pending final confirmation, see [08_TYPOGRAPHY.md](./08_TYPOGRAPHY.md) |
 | Contact form | Opens WhatsApp chat, consistent with cart checkout |
@@ -95,6 +95,3 @@ Contact (condensed), Footer — see
 - Real contact email/phone/address (placeholder, marked `TODO`).
 - Real product names/descriptions/prices per item (placeholder drafted
   per photo, marked `TODO`).
-- Whether Testimonials should eventually get its own route (the
-  reference project added one after launch) — default is homepage
-  section only for now.

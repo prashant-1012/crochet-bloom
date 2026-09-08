@@ -3,7 +3,7 @@
 ## Primary navigation
 
 ```
-Home · Shop · About · Contact          [Cart icon w/ badge]
+Home · Shop · Testimonials · About · Contact          [Cart icon w/ badge]
 ```
 
 - **Home**, **About**, **Contact** are conceptually sections, but
@@ -12,12 +12,17 @@ Home · Shop · About · Contact          [Cart icon w/ badge]
   routes; the homepage additionally surfaces condensed versions of
   About/Testimonials/Contact as scroll sections so a single-page
   visitor gets the full pitch without navigating away.
+- **Testimonials** also gets its own dedicated route (`/testimonials`)
+  — **revised 2026-09-09**: the initial plan kept this as a homepage
+  section only, but the owner asked for the reference project's
+  dedicated testimonials page (the scrolling 3-column marquee layout)
+  back, with a full ~20-testimonial set. The homepage section stays
+  too, as a shorter preview with a "View All Testimonials" link into
+  the full page — same relationship the reference project had between
+  its own homepage section and dedicated page.
 - **Cart** is not a route — it's a drawer, triggered from anywhere.
-- No **Blog** and no dedicated **Testimonials** route in this phase —
-  scope was deliberately kept leaner than the reference project.
-  Testimonials live only as a homepage section. Revisit if the owner
-  wants a dedicated route later (the reference project added one
-  post-launch, so the pattern to follow already exists if needed).
+- No **Blog** in this phase — that part of the scope reduction still
+  stands.
 
 ## Homepage section order (top → bottom)
 
@@ -42,6 +47,7 @@ re-checking this narrative arc.
 | `/` | Homepage — all sections above |
 | `/shop` | Full product catalog, grouped by category |
 | `/shop/[slug]` | Deferred — only add if card-level info stops being enough (e.g. care instructions, customization notes per product grow lengthy). Flag to the user before building. |
+| `/testimonials` | Full testimonials page — scrolling 3-column marquee of ~20 entries |
 | `/about` | Full "Meet the Maker" page |
 | `/contact` | Full Contact page (deeper version of homepage section) |
 

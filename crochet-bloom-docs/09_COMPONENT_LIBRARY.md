@@ -18,12 +18,13 @@ project with only visual/token changes — noted per-component below.
 | `ProductCard` | Image, name, price, category badge, Add to Cart button — used in Featured Products and `/shop`. | Field changes: `ageRange` → `category`, otherwise same shape |
 | `QuantityStepper` | `-` / count / `+` control, used in cart. | Unchanged |
 | `Wordmark` | Renders "Crochet" (Yarn) / "Bloom" (Bloom) as colored text, optional tagline. | Two words instead of three, otherwise same pattern |
+| `TestimonialsColumn` | Vertically auto-scrolling marquee column of testimonial cards (duplicated track, `translateY` loop), used 3-up on `/testimonials`. Respects `prefers-reduced-motion` by rendering a static single column instead. | Ported, with the avatar-image branch dropped since no testimonial in this project's data has a photo — initials-only |
 
 ## `layout/`
 
 | Component | Purpose |
 |---|---|
-| `Navbar` | Logo, nav links (Home/Shop/About/Contact), Cart button with badge, mobile hamburger trigger. Sticky on scroll. |
+| `Navbar` | Logo, nav links (Home/Shop/Testimonials/About/Contact), Cart button with badge, mobile hamburger trigger. Sticky on scroll. |
 | `MobileMenu` | Slide-in/full-screen nav for small viewports. |
 | `Footer` | Nav links, social placeholders, contact placeholder, copyright, `Wordmark`. |
 

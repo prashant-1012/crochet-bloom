@@ -167,5 +167,18 @@ Sunflower Keychain, LED Bouquet Table Decor, Hamper for Her.
 5. Confirm the Fraunces typography choice once it's actually rendered
    in the Hero (Step 2) — it's a reasoned proposal, not yet
    user-approved against real content.
-6. Whether Testimonials should get its own route eventually (default:
-   homepage section only, for now).
+
+## Business decisions confirmed by project owner (2026-09-09)
+
+- **Testimonials scope reversed**: Step 6 originally shipped
+  Testimonials as a homepage section only, with the dedicated
+  `/testimonials` route and its `TestimonialsColumn` marquee component
+  removed as out of scope. The owner asked for both back, plus a
+  larger testimonial set — `lib/data/testimonials.ts` grew from 9 to
+  20 entries (`t1`–`t20`), split 7/7/6 across the three marquee
+  columns on `/testimonials`. `NAV_LINKS` now includes Testimonials
+  (between Shop and About, matching the reference project's original
+  ordering). `TestimonialsColumn.tsx` was recreated rather than
+  restored from git history, with one deliberate simplification: the
+  avatar-image branch was dropped since none of the 20 testimonials
+  have a photo — all render via the initials fallback.

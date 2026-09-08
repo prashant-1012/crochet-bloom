@@ -16,6 +16,8 @@ crochet-bloom/
 │   ├── robots.ts
 │   ├── shop/
 │   │   └── page.tsx
+│   ├── testimonials/
+│   │   └── page.tsx
 │   ├── about/
 │   │   └── page.tsx
 │   └── contact/
@@ -47,6 +49,7 @@ crochet-bloom/
 │   │   ├── ProductCard.tsx
 │   │   ├── QuantityStepper.tsx
 │   │   ├── Wordmark.tsx
+│   │   ├── TestimonialsColumn.tsx (auto-scrolling marquee column, used on /testimonials)
 │   │   └── Reveal.tsx           (client-only scroll-reveal wrapper, see 10_ANIMATION_GUIDELINES)
 │   └── shared/
 │       ├── WhatsAppFloat.tsx
