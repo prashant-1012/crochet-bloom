@@ -1,7 +1,7 @@
 import { Hero } from "@/components/sections/Hero";
 import { FeaturedProducts } from "@/components/sections/FeaturedProducts";
 import { LearningBenefits } from "@/components/sections/LearningBenefits";
-import { About } from "@/components/sections/About";
+import { MeetTheMaker } from "@/components/sections/MeetTheMaker";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { BlogPreview } from "@/components/sections/BlogPreview";
 import { Contact } from "@/components/sections/Contact";
@@ -12,7 +12,7 @@ export default function Home() {
       <Hero />
       <FeaturedProducts />
       <LearningBenefits />
-      <About />
+      <MeetTheMaker />
       <Testimonials />
       <BlogPreview />
       <Contact />
