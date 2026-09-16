@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import Image from "next/image";
 import { animate, motion, useMotionValue } from "framer-motion";
 import { useCart } from "@/components/cart/CartProvider";
 import { createArcPath, type Flight } from "@/lib/utils/fly-to-cart";
@@ -56,13 +55,12 @@ function FlyingItem({ flight, onDone }: { flight: Flight; onDone: () => void }) 
         opacity,
       }}
     >
-      <Image
-        src={image}
-        alt=""
-        fill
-        className="object-cover"
-        sizes={`${Math.round(Math.max(fromRect.width, fromRect.height))}px`}
-      />
+      {/* eslint-disable-next-line @next/next/no-img-element -- must reuse the
+          exact already-decoded <img src> the browser just painted in the
+          card (see ProductCard's flyProductImage), not hand it to next/image
+          which would request a freshly re-optimized, differently-sized
+          variant and reintroduce the load-vs-animate race this exists to avoid. */}
+      <img src={image} alt="" className="h-full w-full object-cover" />
     </motion.div>
   );
 }

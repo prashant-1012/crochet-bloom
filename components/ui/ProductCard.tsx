@@ -22,8 +22,14 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
   const imageWrapperRef = useRef<HTMLDivElement>(null);
 
   function flyProductImage() {
-    const rect = imageWrapperRef.current?.getBoundingClientRect();
-    if (rect) flyToCart(rect, product.image);
+    const wrapper = imageWrapperRef.current;
+    if (!wrapper) return;
+    // Reuse the exact URL the browser already fetched and decoded for the
+    // on-page image (currentSrc, not product.image's raw path) so the flying
+    // clone paints instantly from cache instead of racing a fresh fetch of a
+    // differently-sized variant against the short flight animation.
+    const loadedSrc = wrapper.querySelector("img")?.currentSrc || product.image;
+    flyToCart(wrapper.getBoundingClientRect(), loadedSrc);
   }
 
   function handleAddToCart() {
