@@ -4,13 +4,12 @@ export const SITE_DESCRIPTION =
 // TODO: replace with the real production domain before launch
 export const SITE_URL = 'https://crochetbloom.vercel.app'
 
-// TODO: replace with the real WhatsApp business number before launch (digits only, country code included, no '+'/spaces — required format for wa.me links)
-export const WHATSAPP_NUMBER = '910000000000'
+export const WHATSAPP_NUMBER = '917972052896'
 
-// TODO: replace with real contact details before launch
+// TODO: replace with real contact email before launch
 export const CONTACT_EMAIL = 'hello@crochetbloom.com'
-export const CONTACT_PHONE = '+91 00000 00000'
-export const CONTACT_ADDRESS = 'Address to be added'
+export const CONTACT_PHONE = '+91 79720 52896'
+export const CONTACT_ADDRESS = 'Viman Nagar, Pune, Maharashtra'
 
 export const NAV_LINKS = [
   { label: 'Home', href: '/' },

@@ -30,8 +30,15 @@ const base =
 const variants: Record<Variant, string> = {
   primary:
     "bg-bloom-dark text-white hover:brightness-95 shadow-soft hover:shadow-lift",
-  secondary:
-    "bg-transparent text-yarn-dark border-2 border-yarn hover:bg-yarn hover:text-white",
+  // Fill sweeps in from the corner via a scaled circular ::before instead of
+  // an instant bg swap — same yarn fill color as before, just animated.
+  // `motion-reduce:` falls back to the old instant-fill behavior.
+  secondary: `relative z-0 overflow-hidden bg-transparent text-yarn-dark border-2 border-yarn
+    before:absolute before:inset-0 before:-z-10 before:rounded-[100%] before:bg-yarn
+    before:scale-[2.5] before:translate-x-[150%] before:translate-y-[150%]
+    before:transition-transform before:duration-500 before:content-['']
+    hover:text-white hover:before:translate-x-0 hover:before:translate-y-0
+    motion-reduce:before:hidden motion-reduce:hover:bg-yarn`,
   ghost: "bg-transparent text-charcoal hover:bg-warm-gray-light",
 };
 
