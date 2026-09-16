@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
@@ -17,13 +18,29 @@ const thirdColumn = testimonials.slice(14, 20);
 
 export default function TestimonialsPage() {
   return (
-    <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-10 lg:py-24 xl:px-12">
+    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-10 lg:py-4 xl:px-12">
       <Reveal>
-        <SectionHeading
-          eyebrow="Testimonials"
-          title="What Our Customers Are Saying"
-          subtitle="Real words from customers who chose handmade over mass-produced, and never looked back."
-        />
+        <div className="relative">
+          <div className="overflow-hidden rounded-3xl border border-warm-gray-light/40 bg-gradient-to-br from-bloom/20 via-cream to-yarn/20 px-6 pt-10 pb-24 shadow-soft sm:px-10 sm:pt-14 sm:pb-14 lg:px-16 lg:pt-20 lg:pb-20">
+            <SectionHeading
+              eyebrow="Testimonials"
+              title="What Our Customers Are Saying"
+              subtitle="Real words from customers who chose handmade over mass-produced, and never looked back."
+              align="left"
+              className="max-w-full sm:max-w-md lg:max-w-lg"
+            />
+          </div>
+
+          <div className="pointer-events-none absolute -bottom-4 -right-2 aspect-[3/4] h-32 sm:-bottom-8 sm:-right-6 sm:h-52 lg:-bottom-12 lg:h-80 xl:-bottom-16 xl:h-[26rem]">
+            <Image
+              src="/images/zebra.png"
+              alt=""
+              fill
+              className="object-contain object-bottom drop-shadow-xl"
+              sizes="(min-width: 1280px) 312px, (min-width: 1024px) 240px, (min-width: 640px) 156px, 96px"
+            />
+          </div>
+        </div>
       </Reveal>
 
       <div className="mt-12 flex max-h-[740px] justify-center gap-6 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)]">
