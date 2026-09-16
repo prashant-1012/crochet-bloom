@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import type { Testimonial } from "@/lib/data/testimonials";
 import { avatarColors, getInitials } from "@/lib/utils/avatar";
@@ -21,11 +22,23 @@ function TestimonialCard({
     <div className="w-full max-w-xs rounded-3xl border border-warm-gray-light/60 bg-cloud p-8 shadow-soft">
       <p className="text-sm text-warm-gray">&ldquo;{testimonial.quote}&rdquo;</p>
       <div className="mt-5 flex items-center gap-3">
-        <span
-          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-semibold ${avatarColors[colorIndex % avatarColors.length]}`}
-        >
-          {getInitials(testimonial.name)}
-        </span>
+        {testimonial.avatar ? (
+          <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
+            <Image
+              src={testimonial.avatar}
+              alt=""
+              fill
+              className="object-cover"
+              sizes="40px"
+            />
+          </div>
+        ) : (
+          <span
+            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-semibold ${avatarColors[colorIndex % avatarColors.length]}`}
+          >
+            {getInitials(testimonial.name)}
+          </span>
+        )}
         <div className="flex flex-col leading-tight">
           <span className="font-semibold tracking-tight text-charcoal">
             {testimonial.name}

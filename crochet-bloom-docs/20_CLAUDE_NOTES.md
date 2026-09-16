@@ -282,3 +282,79 @@ audit, Safari/Firefox (neither available in this environment), and a
 literal re-check of the empty-cart state after emptying a previously
 populated cart (low risk, same code path as the already-verified
 fresh-session empty state, but not literally re-exercised).
+
+## Step 10 — Remove Easy Toddler Day legacy content (2026-09-16)
+
+Ran per [18_DEVELOPMENT_ROADMAP.md](./18_DEVELOPMENT_ROADMAP.md)'s
+Step 10, with explicit user confirmation immediately before running
+(per this project's own working agreement around destructive steps).
+Removed via `git rm`, not a plain delete, so the removal is reversible
+through git history if anything is missed:
+
+- `docs/` (the reference project's own planning docs — fully
+  superseded by `crochet-bloom-docs/`).
+- `app/blog/` (`page.tsx`, `[slug]/page.tsx`,
+  `[slug]/opengraph-image.tsx`), `components/sections/BlogPreview.tsx`,
+  `components/sections/LearningBenefits.tsx`,
+  `components/ui/BlogCover.tsx`, `components/ui/BlogCoverArt.tsx`,
+  `components/ui/BlogPostCard.tsx`, `lib/data/blogPosts.ts`,
+  `lib/types/blog.ts` — blog and "Learning Benefits" were toddler-site
+  concepts with no equivalent in Crochet Bloom's scope (see
+  [00_PROJECT_OVERVIEW.md](./00_PROJECT_OVERVIEW.md)'s non-goals).
+  These weren't dead code — `LearningBenefits` and `BlogPreview` were
+  still actually rendered on the homepage (`app/page.tsx`), so removing
+  them required updating that file, not just deleting the component
+  files. `app/sitemap.ts` also imported `blogPosts` to generate
+  `/blog/[slug]` routes; that import and the dynamic route block were
+  removed, leaving only the static route list.
+- 26 unused images in `public/images/` left over from the reference
+  project (parent/toddler testimonial headshots, book covers, blog
+  post images, old `easytoddlerday-*` logo variants) — confirmed unused
+  first via a repo-wide grep for each filename across `app/`,
+  `components/`, `lib/` before deleting any of them. The 20
+  testimonials in this project's own `lib/data/testimonials.ts` render
+  via initials fallback with no photo field, so none of the deleted
+  headshots were ever wired to Crochet Bloom content.
+- The 5 unused default `create-next-app` scaffold SVGs in `public/`
+  (`file.svg`, `globe.svg`, `next.svg`, `vercel.svg`, `window.svg`) —
+  not explicitly named in the roadmap's Step 10 bullet, but unambiguous
+  scaffold cruft from the same original `create-next-app` run,
+  confirmed unreferenced the same way before deleting.
+- `package.json`'s `name` field: `easy-toddler-day` → `crochet-bloom`.
+
+Verified clean after the removal: `npm run build` (all 12 routes
+generate, no `/blog` route left) and `npm run lint` both pass with no
+errors.
+
+## Testimonial avatar photos added (2026-09-16)
+
+All 20 testimonials previously rendered via the initials-fallback only
+(see the Testimonials-scope-reversal note above — none had a photo).
+Per explicit owner direction ("this is just a template website"), 11
+generic stock face photos from `crochet-bloom-assets/profile pics
+face/` were copied into `public/images/testimonials/` (renamed
+`f1`–`f7` for the 7 female-presenting photos, `m1`–`m4` for the 4
+male-presenting ones) and wired up as each testimonial's `avatar`
+field, matched to the gender implied by each testimonial's name and
+cycled through the small pool — since there are only 11 photos for 20
+testimonials, several are deliberately reused across different names.
+This is an explicit placeholder/template tradeoff, not a data-accuracy
+concern to fix later on its own, but the same **licensing caveat
+already on record for the product photos** applies here too: these
+look like generic stock photography (Freepik-style filenames/IDs), not
+photos of real customers, and using stock faces attached to fabricated
+named testimonials is a different risk than using them as generic
+decor — it can read as fabricated social proof. **Revisit before
+public launch**, either by swapping in real customer photos (with
+consent) or removing photos entirely and reverting to the
+initials-only fallback, which was already a fully supported rendering
+path and is not a design compromise.
+
+Also restored the avatar-image rendering branch in
+`components/ui/TestimonialsColumn.tsx` (used only by the dedicated
+`/testimonials` route's marquee columns), which had been deliberately
+dropped during the 2026-09-09 testimonials-scope reversal specifically
+because no testimonial had a photo at the time. It now mirrors the
+`avatar`-or-initials-fallback pattern already implemented in the
+homepage's `components/sections/Testimonials.tsx`, so both surfaces
+render identically.

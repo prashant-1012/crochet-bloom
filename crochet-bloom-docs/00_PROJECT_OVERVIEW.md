@@ -13,12 +13,14 @@ pre-filled WhatsApp message opens so the actual sale is closed in a
 chat with the business owner.
 
 This project reuses the architecture (not the content or visual
-design) of a prior project, **Easy Toddler Day**, which lives in the
-same repository under `docs/` for reference. That project proved out a
-solid, backend-free pattern — typed data files, Context+reducer cart,
-WhatsApp checkout — that Crochet Bloom's requirements match closely
-enough to build on directly. See
-[20_CLAUDE_NOTES.md](./20_CLAUDE_NOTES.md) for what's being reused
+design) of a prior project, **Easy Toddler Day**, which lived in the
+same repository under `docs/` for reference until that folder was
+removed in Step 10 of the build (see
+[18_DEVELOPMENT_ROADMAP.md](./18_DEVELOPMENT_ROADMAP.md)). That
+project proved out a solid, backend-free pattern — typed data files,
+Context+reducer cart, WhatsApp checkout — that Crochet Bloom's
+requirements matched closely enough to build on directly. See
+[20_CLAUDE_NOTES.md](./20_CLAUDE_NOTES.md) for what was reused
 verbatim vs. rebuilt.
 
 ## Business goals
