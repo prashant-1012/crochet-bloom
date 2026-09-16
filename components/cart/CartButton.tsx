@@ -5,10 +5,11 @@ import { motion } from "framer-motion";
 import { useCart } from "@/components/cart/CartProvider";
 
 export function CartButton() {
-  const { itemCount, toggleDrawer } = useCart();
+  const { itemCount, toggleDrawer, cartIconRef } = useCart();
 
   return (
     <button
+      ref={cartIconRef}
       type="button"
       onClick={toggleDrawer}
       aria-label={`Open cart, ${itemCount} item${itemCount === 1 ? "" : "s"}`}

@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -16,10 +17,17 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, priority = false }: ProductCardProps) {
-  const { items, addItem, updateQuantity, removeItem } = useCart();
+  const { items, addItem, updateQuantity, removeItem, flyToCart } = useCart();
   const cartItem = items.find((item) => item.productId === product.id);
+  const imageWrapperRef = useRef<HTMLDivElement>(null);
+
+  function flyProductImage() {
+    const rect = imageWrapperRef.current?.getBoundingClientRect();
+    if (rect) flyToCart(rect, product.image);
+  }
 
   function handleAddToCart() {
+    flyProductImage();
     addItem({
       productId: product.id,
       name: product.name,
@@ -30,7 +38,9 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
   }
 
   function handleIncrease() {
-    if (cartItem) updateQuantity(product.id, cartItem.quantity + 1);
+    if (!cartItem) return;
+    flyProductImage();
+    updateQuantity(product.id, cartItem.quantity + 1);
   }
 
   function handleDecrease() {
@@ -44,7 +54,10 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
 
   return (
     <Card className="flex h-full flex-col overflow-hidden">
-      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-t-2xl bg-warm-gray-light">
+      <div
+        ref={imageWrapperRef}
+        className="relative aspect-[4/5] w-full overflow-hidden rounded-t-2xl bg-warm-gray-light"
+      >
         <Image
           src={product.image}
           alt={product.name}
@@ -64,9 +77,9 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
         <p className="flex-1 text-sm text-warm-gray">
           {product.shortDescription}
         </p>
-        {product.madeToOrder && (
+        {/* {product.madeToOrder && (
           <p className="text-xs text-warm-gray">Handcrafted to order</p>
-        )}
+        )} */}
         <div className="mt-2 flex items-center justify-between gap-3">
           <div className="flex items-baseline gap-2">
             <span className="text-lg font-bold text-charcoal">

@@ -10,8 +10,11 @@ import {
   useRef,
   useState,
   type ReactNode,
+  type RefObject,
 } from "react";
+import { useReducedMotion } from "framer-motion";
 import type { CartAction, CartItem, CartState } from "@/lib/types/cart";
+import type { Flight } from "@/lib/utils/fly-to-cart";
 
 const STORAGE_KEY = "cb_cart_v1";
 
@@ -72,6 +75,10 @@ interface CartContextValue {
   openDrawer: () => void;
   closeDrawer: () => void;
   toggleDrawer: () => void;
+  cartIconRef: RefObject<HTMLButtonElement | null>;
+  flights: Flight[];
+  flyToCart: (fromRect: DOMRect, image: string) => void;
+  completeFlight: (id: string) => void;
 }
 
 const CartContext = createContext<CartContextValue | undefined>(undefined);
@@ -80,6 +87,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, initialState);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const hydrated = useRef(false);
+  const cartIconRef = useRef<HTMLButtonElement | null>(null);
+  const flightIdRef = useRef(0);
+  const [flights, setFlights] = useState<Flight[]>([]);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     try {
@@ -126,6 +137,24 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const closeDrawer = useCallback(() => setIsDrawerOpen(false), []);
   const toggleDrawer = useCallback(() => setIsDrawerOpen((open) => !open), []);
 
+  // Decorative only — the cart mutation that triggers this always fires
+  // separately and immediately, regardless of whether a flight starts.
+  const flyToCart = useCallback(
+    (fromRect: DOMRect, image: string) => {
+      if (shouldReduceMotion) return;
+      const toEl = cartIconRef.current;
+      if (!toEl) return;
+      const toRect = toEl.getBoundingClientRect();
+      const id = `flight-${flightIdRef.current++}`;
+      setFlights((current) => [...current, { id, fromRect, toRect, image }]);
+    },
+    [shouldReduceMotion]
+  );
+  const completeFlight = useCallback(
+    (id: string) => setFlights((current) => current.filter((flight) => flight.id !== id)),
+    []
+  );
+
   const value = useMemo<CartContextValue>(() => {
     const itemCount = state.items.reduce((sum, item) => sum + item.quantity, 0);
     const subtotal = state.items.reduce(
@@ -145,6 +174,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
       openDrawer,
       closeDrawer,
       toggleDrawer,
+      cartIconRef,
+      flights,
+      flyToCart,
+      completeFlight,
     };
   }, [
     state,
@@ -156,6 +189,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     openDrawer,
     closeDrawer,
     toggleDrawer,
+    flights,
+    flyToCart,
+    completeFlight,
   ]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

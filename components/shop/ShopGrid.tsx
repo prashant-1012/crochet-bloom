@@ -59,7 +59,7 @@ export function ShopGrid({ products }: ShopGridProps) {
         ))}
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {filteredProducts.map((product, index) => (
           <Reveal key={product.id} delay={(index % 3) * 0.06} className="h-full">
             <ProductCard product={product} priority={index < 3} />

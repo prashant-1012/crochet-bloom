@@ -10,6 +10,7 @@ import {
   SITE_URL,
 } from "@/lib/constants";
 import { CartProvider } from "@/components/cart/CartProvider";
+import { FlyToCartLayer } from "@/components/cart/FlyToCartLayer";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/shared/WhatsAppFloat";
@@ -93,6 +94,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <CartDrawer />
+          <FlyToCartLayer />
           <WhatsAppFloat />
         </CartProvider>
       </body>
