@@ -350,6 +350,26 @@ consent) or removing photos entirely and reverting to the
 initials-only fallback, which was already a fully supported rendering
 path and is not a design compromise.
 
+## OG image switched to a static asset (2026-09-17)
+
+Per explicit owner direction, replaced the generated
+`app/opengraph-image.tsx` (see
+[13_SEO_STRATEGY.md](./13_SEO_STRATEGY.md) for the original build) with
+the owner-supplied `crochet-bloom-assets/OgImage.jpeg` — a branded
+screenshot of the live Home page, to be used as the single share-preview
+image across Instagram, WhatsApp, Telegram, and X/Twitter. Placed at
+`app/opengraph-image.jpeg` using Next's literal-image-file convention
+(confirmed supported in `node_modules/next/dist/docs/` per `AGENTS.md`,
+since this repo runs a non-standard Next.js version) rather than
+re-wrapping it in `ImageResponse`, with `app/opengraph-image.alt.txt`
+carrying the old component's alt text. Also removed
+`public/images/ogImage.jpg`, a same-purpose duplicate left over from an
+earlier migration that nothing actually referenced (confirmed via
+repo-wide grep before deleting, same as the Step 10 cleanup pattern).
+Verified with a real `next build && next start`, not just a code read:
+`og:image` and `twitter:image` both resolve to `/opengraph-image.jpeg`
+at its native 1500×767 dimensions.
+
 Also restored the avatar-image rendering branch in
 `components/ui/TestimonialsColumn.tsx` (used only by the dedicated
 `/testimonials` route's marquee columns), which had been deliberately
