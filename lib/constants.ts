@@ -2,7 +2,7 @@ export const SITE_NAME = 'Crochet Bloom'
 export const SITE_DESCRIPTION =
   'Handmade crochet flower bouquets, keychains, hampers, and decor — everlasting, made-to-order gifts, crafted by hand.'
 // TODO: replace with the real production domain before launch
-export const SITE_URL = 'https://crochetbloom.vercel.app'
+export const SITE_URL = 'https://crochet-bloom.vercel.app'
 
 export const WHATSAPP_NUMBER = '917972052896'
 
